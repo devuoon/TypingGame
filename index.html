@@ -4,9 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>단어 맞추기 게임</title>
+    <link rel="stylesheet" href="./style/font.css">
+    <link rel="stylesheet" href="./style/reset.css">
     <link rel="stylesheet" href="./style/style.css">
 </head>
 <body>
-    
+    <div id="wrap">
+        <div class="top-cont">
+            <button>Reset</button>
+            <h2>50</h2>
+        </div>
+        <div class="center-cont">
+            <div class="input-box word">
+                <label for="wordDisplay">제시어</label>
+                <input id="wordDisplay" type="text" value="포도" disabled>
+            </div>
+            <div class="input-box">
+                <label for="timerDisplay">남은시간</label>
+                <input id="timerDisplay" type="text" value="19 초" disabled>
+            </div>
+            <div class="input-box user">
+                <label for="userInput">입력란</label>
+                <input id="userInput" type="text">
+            </div>
+        </div>
+        <div class="bot-cont">
+            <div class="box correct">
+                <p>정답 <span>(1)</span></p>
+                <ul>
+                    <li>사과</li>
+                </ul>
+            </div>
+            <div class="box incorrect">
+                <p>오답 <span>(1)</span></p>
+                <ul>
+                    <li>사괴</li>
+                    <li>사강</li>
+                    <li>사고</li>
+                    <li>사괘</li>
+                    <li>사괘</li>
+                    <li>사괘</li>
+                    <li>사괘사괘사괘</li>
+                    <li>사괴</li>
+                    <li>사강</li>
+                    <li>사고</li>
+                    <li>사괘</li>
+                    <li>사괘</li>
+                    <li>사괘</li>
+                    <li>사괘사괘사괘</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
