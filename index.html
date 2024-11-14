@@ -11,22 +11,22 @@
 <body>
     <div id="wrap">
         <div class="top-cont">
-            <button>Reset</button>
+            <button id="startButton">Reset</button>
             <h2>50</h2>
         </div>
         <div class="center-cont">
             <div class="input-box word">
-                <label for="wordDisplay">제시어</label>
-                <input id="wordDisplay" type="text" value="포도" disabled>
+                <span>제시어</span>
+                <div id="wordDisplay" class="display-box">포도</div>
             </div>
             <div class="input-box">
-                <label for="timerDisplay">남은시간</label>
-                <input id="timerDisplay" type="text" value="19 초" disabled>
+                <span>남은시간</span>
+                <div id="timerDisplay" class="display-box">초</div>
             </div>
             <div class="input-box user">
-                <label for="userInput">입력란</label>
-                <input id="userInput" type="text">
-            </div>
+                <span>입력란</span>
+                <input id="userInput" class="display-box" type="text">
+            </div>            
         </div>
         <div class="bot-cont">
             <div class="box correct">
@@ -56,5 +56,9 @@
             </div>
         </div>
     </div>
+    <script type="module" src="./utils/timer.js"></script>
+    <script type="module" src="./utils/api.js"></script>
+    <script type="module" src="./utils/gameManage.js"></script>
+    <script type="module" src="./utils/wordHandler.js"></script>
 </body>
 </html>

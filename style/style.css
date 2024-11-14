@@ -38,11 +38,11 @@
     margin: 0 170px 40px;
 }
 
-.input-box.word label{
+.input-box.word span{
     text-align: center;
 }
 
-.input-box label{
+.input-box span{
     display: block;
     text-align: left;
     color:#707070;
@@ -50,7 +50,8 @@
     padding-bottom:8px;
 }
 
-.input-box.word input{
+.input-box.word .display-box{
+    display: inline-block;
     width:220px;
     padding:16px 0;
     text-align: center;
@@ -61,7 +62,7 @@
     border:none;
 }
 
-.input-box input{
+.input-box .display-box{
     border-radius: 48px;
     width:100%;
     border: 2px solid #d7dbe6;
@@ -71,6 +72,7 @@
     font-weight:500;
     background-color: transparent;
 }
+
 .input-box.user input:focus-visible{
     outline-width: 2px;
     outline-color: #b8b2f2;
