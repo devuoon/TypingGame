@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="./style/reset.css">
     <link rel="stylesheet" href="./style/style.css">
 </head>
+
 <body>
     <div id="wrap">
         <div class="top-cont">
@@ -16,8 +18,8 @@
         </div>
         <div class="center-cont">
             <div class="input-box word">
-                <span>제시어</span>
-                <div id="wordDisplay" class="display-box">포도</div>
+                <label for="wordDisplay">제시어</label>
+                <input id="wordDisplay" type="text" value="포도" disabled>
             </div>
             <div class="input-box">
                 <span>남은시간</span>
@@ -56,9 +58,6 @@
             </div>
         </div>
     </div>
-    <script type="module" src="./utils/timer.js"></script>
-    <script type="module" src="./utils/api.js"></script>
-    <script type="module" src="./utils/gameManage.js"></script>
-    <script type="module" src="./utils/wordHandler.js"></script>
 </body>
+
 </html>
