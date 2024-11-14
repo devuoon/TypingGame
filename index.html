@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="./style/reset.css">
     <link rel="stylesheet" href="./style/style.css">
 </head>
+
 <body>
     <div id="wrap">
         <div class="top-cont">
@@ -17,7 +19,7 @@
         <div class="center-cont">
             <div class="input-box word">
                 <label for="wordDisplay">제시어</label>
-                <input id="wordDisplay" type="text" value="포도" disabled>
+                <p id="wordDisplay"></p>
             </div>
             <div class="input-box">
                 <label for="timerDisplay">남은시간</label>
@@ -56,5 +58,7 @@
             </div>
         </div>
     </div>
+    <script type="module" src="./utils/wordHandler.js"></script>
 </body>
+
 </html>
