@@ -2,7 +2,7 @@ const timerDisplay = document.querySelector("#timerDisplay");
 
 let startTime;
 let isCounting = false;
-const countdownDuration = 30000; // 30초
+const countdownDuration = 20000; // 30초
 
 // 타이머 업데이트 함수
 const updateTimer = (timestamp) => {
@@ -14,7 +14,6 @@ const updateTimer = (timestamp) => {
   // 남은 시간을 초 단위로 표시
   const seconds = (remainingTime / 1000).toFixed(0);
   timerDisplay.textContent = `${seconds} 초`;
-  console.log(seconds);
 
   // 시간이 남아 있으면 requestAnimationFrame 반복 호출
   if (remainingTime > 0) {
@@ -37,5 +36,5 @@ export const startCountdown = () => {
 export const resetTimer = () => {
   isCounting = false;
   startTime = null;
-  timerDisplay.value = "30 초";
+  //timerDisplay.value = "20 초";
 };
