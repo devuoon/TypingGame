@@ -1,12 +1,15 @@
 import { fetchWords, wordCompare } from "./wordHandler.js";
 import { startCountdown, resetTimer } from "./timerHandler.js";
+import { DOM_ELEMENTS } from "./global.js";
 
-const loadingSpinner = document.querySelector("#loadingSpinner");
-const inputBoxWord = document.querySelector(".word");
-const gameOver = document.querySelector(".gameOver");
-const resetBtn = document.querySelector("#resetButton");
-const correctList = document.querySelector(".correctList");
-const incorrectList = document.querySelector(".incorrectList");
+const {
+  loadingSpinner,
+  inputBoxWord,
+  gameOver,
+  incorrectList,
+  resetBtn,
+  correctList,
+} = DOM_ELEMENTS;
 
 // 사용자가 입력한 단어와 제시어를 비교하는 이벤트 핸들러
 const userInput = document.querySelector("#userInput");
