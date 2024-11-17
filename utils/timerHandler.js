@@ -1,8 +1,10 @@
+import { endGame } from "./gameManage.js";
+
 const timerDisplay = document.querySelector("#timerDisplay");
 
 let startTime;
 let isCounting = false;
-const countdownDuration = 20000; // 30초
+const countdownDuration = 20000; // 5초
 
 // 타이머 업데이트 함수
 const updateTimer = (timestamp) => {
@@ -15,12 +17,21 @@ const updateTimer = (timestamp) => {
   const seconds = (remainingTime / 1000).toFixed(0);
   timerDisplay.textContent = `${seconds} 초`;
 
+  // 5초 미만일 때 스타일 추가
+  if (seconds <= 5) {
+    timerDisplay.style.border = "2px solid #f86361";
+    timerDisplay.style.color = "#f86361";
+  } else {
+    timerDisplay.style.border = "2px solid #d7dbe6";
+    timerDisplay.style.color = "#000";
+  }
+
   // 시간이 남아 있으면 requestAnimationFrame 반복 호출
-  if (remainingTime > 0) {
+  if (seconds > 0) {
     requestAnimationFrame(updateTimer);
   } else {
-    timerDisplay.textContent = "0 초";
     isCounting = false;
+    endGame();
   }
 };
 
@@ -37,4 +48,5 @@ export const resetTimer = () => {
   isCounting = false;
   startTime = null;
   //timerDisplay.value = "20 초";
+  timerDisplay.style.border = ""; // 리셋 시 테두리 스타일 제거
 };
