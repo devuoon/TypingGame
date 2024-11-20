@@ -11,4 +11,5 @@ export const DOM_ELEMENTS = {
   wordDisplay: document.querySelector("#wordDisplay"),
   correctSpan: document.querySelector(".box.correct span"),
   incorrectSpan: document.querySelector(".box.incorrect span"),
+  wordCount: document.querySelector(".promptCount"),
 };

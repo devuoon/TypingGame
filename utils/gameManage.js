@@ -1,5 +1,5 @@
 import { fetchWords, wordCompare } from "./wordHandler.js";
-import { startCountdown, resetTimer } from "./timerHandler.js";
+import { startCountdown, resetTimer, updateTimer } from "./timerHandler.js";
 import { DOM_ELEMENTS } from "./global.js";
 
 const {
@@ -9,10 +9,8 @@ const {
   incorrectList,
   resetBtn,
   correctList,
+  userInput,
 } = DOM_ELEMENTS;
-
-// 사용자가 입력한 단어와 제시어를 비교하는 이벤트 핸들러
-const userInput = document.querySelector("#userInput");
 
 // 게임 초기화 함수
 const initializeGame = async () => {
@@ -22,6 +20,7 @@ const initializeGame = async () => {
     userInput.disabled = false;
     incorrectList.innerHTML = "";
     correctList.innerHTML = "";
+    userInput.value = "";
 
     // 1. 로딩 스피너 표시
     loadingSpinner.style.display = "block";
@@ -36,8 +35,7 @@ const initializeGame = async () => {
     resetTimer();
     startCountdown();
   } catch (error) {
-    console.error("Error initializing game:", error);
-    alert("게임 초기화 중 오류가 발생했습니다.");
+    alert("오류가 발생했습니다.");
     loadingSpinner.style.display = "none";
   }
 };
@@ -59,10 +57,10 @@ const resetGame = () => {
 };
 
 // 페이지 로드 시 게임 초기화 실행
-window.addEventListener("DOMContentLoaded", initializeGame);
 resetBtn.addEventListener("click", resetGame);
 userInput.addEventListener("keydown", (e) => {
   if (e.code === "Enter") {
     wordCompare(); // 단어 비교 함수 호출
   }
 });
+window.addEventListener("DOMContentLoaded", initializeGame);

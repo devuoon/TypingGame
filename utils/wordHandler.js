@@ -8,65 +8,51 @@ const {
   incorrectList,
   correctSpan,
   incorrectSpan,
+  wordCount,
 } = DOM_ELEMENTS;
 
 let words = [];
 
-const fetchWords = async () => {
-  try {
-    words = await wordAPI(); // 단어 목록을 받아옵니다.
-    displayRandomWord(words);
-  } catch (error) {
-    console.error("Error fetching words:", error);
-    wordDisplay.textContent = "API 호출 오류";
-  }
-};
+correctSpan.textContent = "0";
+incorrectSpan.textContent = "0";
 
-const displayRandomWord = (words) => {
-  if (!words || words.length === 0) {
-    wordDisplay.textContent = "단어를 불러올 수 없습니다.";
-    return;
-  }
-  const randomIndex = Math.floor(Math.random() * words.length);
-  wordDisplay.textContent = words[randomIndex];
-
-  document.querySelector(".promptCount").textContent = words.length;
-
-  updateCounters();
-};
-
-const updateCounters = () => {
-  const correctCount = correctList.querySelectorAll("li").length;
-  correctSpan.textContent = `(${correctCount})`;
-
-  const incorrectCount = incorrectList.querySelectorAll("li").length;
-  incorrectSpan.textContent = `(${incorrectCount})`;
-};
-
-const handleCorrectAnswer = (inputWord) => {
-  userInput.value = "";
-  addToList(correctList, inputWord);
-  words = words.filter((word) => word !== inputWord);
-
-  if (words.length === 0) {
-    alert("게임이 종료되었습니다.");
-  } else {
-    displayRandomWord(words);
-  }
-};
-
-const handleIncorrectAnswer = (inputWord) => {
-  userInput.value = "";
-  addToList(incorrectList, inputWord);
-  displayRandomWord(words);
-};
-
+// 리스트에 단어 추가
 const addToList = (list, word) => {
   const listItem = document.createElement("li");
   listItem.textContent = word;
   list.appendChild(listItem);
 };
 
+// 랜덤 단어 표시
+const displayRandomWord = (words) => {
+  const randomIndex = Math.floor(Math.random() * words.length);
+  wordDisplay.textContent = words[randomIndex];
+
+  wordCount.textContent = words.length;
+};
+
+// 정답 처리 함수
+const handleCorrectAnswer = (inputWord) => {
+  userInput.value = "";
+  addToList(correctList, inputWord);
+
+  const correctCount = correctList.querySelectorAll("li").length;
+  correctSpan.textContent = `${correctCount}`;
+
+  words = words.filter((word) => word !== inputWord); // 사용한 단어 제거
+  displayRandomWord(words);
+};
+
+// 오답 처리 함수
+const handleIncorrectAnswer = (inputWord) => {
+  userInput.value = "";
+  addToList(incorrectList, inputWord);
+
+  const incorrectCount = incorrectList.querySelectorAll("li").length; // 오답 카운트
+  incorrectSpan.textContent = `${incorrectCount}`; // 업데이트된 오답 카운트 표시
+};
+
+// 단어 비교
 export const wordCompare = () => {
   const promptWord = wordDisplay.textContent.trim();
   const inputWord = userInput.value.trim();
@@ -78,4 +64,13 @@ export const wordCompare = () => {
   }
 };
 
-export { fetchWords };
+// 단어 API 호출
+export const fetchWords = async () => {
+  try {
+    words = await wordAPI();
+    displayRandomWord(words);
+  } catch (error) {
+    console.log("error : ", error);
+    wordDisplay.textContent = "API 호출 오류";
+  }
+};
