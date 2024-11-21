@@ -11,56 +11,47 @@
 </head>
 
 <body>
+    <div class="spinner-bg"></div>
+    <div id="loadingSpinner" class="loading-spinner hidden">
+        <div class="spinner"></div>
+    </div>
     <div id="wrap">
+        
         <div class="top-cont">
-            <button id="startButton">Reset</button>
-            <h2>50</h2>
+            <button id="resetButton">Reset</button>
+            <h2 class="promptCount"></h2>
         </div>
         <div class="center-cont">
             <div class="input-box word">
-                <label for="wordDisplay">제시어</label>
-                <input id="wordDisplay" type="text" value="포도" disabled>
+                <span>제시어</span>
+                <p id="wordDisplay"></p>
+            </div>
+            <div class="gameOver">
+                <p>GAME OVER</p>
             </div>
             <div class="input-box">
                 <span>남은시간</span>
-                <div id="timerDisplay" class="display-box">초</div>
+                <p id="timerDisplay" class="display-box"></p>
             </div>
             <div class="input-box user">
                 <span>입력란</span>
-                <input id="userInput" class="display-box" type="text">
-            </div>            
+                <input id="userInput" class="display-box">
+            </div>
         </div>
         <div class="bot-cont">
             <div class="box correct">
-                <p>정답 <span>(1)</span></p>
-                <ul>
-                    <li>사과</li>
+                <p>정답 (<span></span>)</p>
+                <ul class="correctList">
                 </ul>
             </div>
             <div class="box incorrect">
-                <p>오답 <span>(1)</span></p>
-                <ul>
-                    <li>사괴</li>
-                    <li>사강</li>
-                    <li>사고</li>
-                    <li>사괘</li>
-                    <li>사괘</li>
-                    <li>사괘</li>
-                    <li>사괘사괘사괘</li>
-                    <li>사괴</li>
-                    <li>사강</li>
-                    <li>사고</li>
-                    <li>사괘</li>
-                    <li>사괘</li>
-                    <li>사괘</li>
-                    <li>사괘사괘사괘</li>
+                <p>오답 (<span></span>)</p>
+                <ul class="incorrectList">
                 </ul>
             </div>
         </div>
     </div>
-
-    <script type="module" src="./utils/wordHandler.js"></script>
-    <script type="module" src="./utils/timer.js"></script>
+    <script type="module" src="./utils/gameManage.js"></script>
 </body>
 
 </html>
