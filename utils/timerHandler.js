@@ -1,46 +1,44 @@
+import { DOM_ELEMENTS, GLOBAL_STATE } from "./global.js";
 import { endGame } from "./gameManage.js";
 
-const timerDisplay = document.querySelector("#timerDisplay");
-
-let startTime;
-let isCounting = false;
-const limitTime = 20000; // 20초
+const { timerDisplay } = DOM_ELEMENTS;
 
 // 타이머 업데이트 함수
-export const updateTimer = (timestamp) => {
-  if (!startTime) startTime = timestamp;
+export const updateTimer = () => {
+  // 남은 시간 업데이트
+  GLOBAL_STATE.remainTime -= 1000;
 
-  const elapsedTime = timestamp - startTime;
-  const remainTime = Math.max(0, limitTime - elapsedTime);
-  const seconds = (remainTime / 1000).toFixed(0);
-
+  // 남은 시간을 초 단위로 계산
+  const seconds = (GLOBAL_STATE.remainTime / 1000).toFixed(0);
   timerDisplay.textContent = `${seconds} 초`;
 
   // 스타일 업데이트
   if (seconds <= 5) {
-    timerDisplay.classList.add('timer');
+    timerDisplay.classList.add("timer");
   }
 
-  // 남은 시간이 0초보다 크면 계속 업데이트
-  if (remainTime > 0) {
-    requestAnimationFrame(updateTimer);
-  } else {
-    endGame(); // 타이머 종료 시 게임 종료
+  // 시간이 끝나면 종료
+  if (GLOBAL_STATE.remainTime <= 0) {
+    clearInterval(GLOBAL_STATE.timerId);
+    endGame(); // 게임 종료 함수 호출
   }
 };
 
 // 타이머 시작 함수
 export const startCountdown = () => {
-  if (isCounting) return;
-  isCounting = true;
-  startTime = null;
-  requestAnimationFrame(updateTimer); // 타이머 시작
+  if (GLOBAL_STATE.isCounting) return;
+
+  GLOBAL_STATE.isCounting = true;
+  GLOBAL_STATE.remainTime = 20000; // 제한 시간 초기화
+  GLOBAL_STATE.timerId = setInterval(updateTimer, 1000); // 1초 간격으로 updateTimer 실행
 };
 
 // 타이머 리셋 함수
 export const resetTimer = () => {
-  isCounting = false;
-  startTime = null;
-  timerDisplay.style.border = "";
-  timerDisplay.style.color = ""; // 리셋 시 스타일 초기화
+  GLOBAL_STATE.isCounting = false;
+  GLOBAL_STATE.remainTime = 20000; // 제한 시간 초기화
+  clearInterval(GLOBAL_STATE.timerId); // 기존 타이머 정리
+  timerDisplay.style.border = ""; // 스타일 초기화
+  timerDisplay.style.color = ""; // 스타일 초기화
+  timerDisplay.textContent = ""; // 타이머 텍스트 초기화
 };

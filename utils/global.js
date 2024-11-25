@@ -14,3 +14,10 @@ export const DOM_ELEMENTS = {
   incorrectSpan: document.querySelector(".box.incorrect span"),
   wordCount: document.querySelector(".promptCount"),
 };
+
+// 전역 상태 변수
+export const GLOBAL_STATE = {
+  remainTime: 20000,
+  timerId: null,     // 타이머 ID 
+  isCounting: false, // 타이머 작동 여부
+};
