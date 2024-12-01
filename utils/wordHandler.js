@@ -1,6 +1,7 @@
 import { wordAPI } from "./api.js";
 import { DOM_ELEMENTS } from "./global.js";
 import { resetTimer, startCountdown } from "./timerHandler.js";
+import { endGame } from "./gameManage.js";
 
 const {
   wordDisplay,
@@ -46,6 +47,9 @@ const handleCorrectAnswer = (inputWord) => {
   words = words.filter((word) => word !== inputWord); // 사용한 단어 제거
   displayRandomWord(words);
 
+  if (words.length === 0) {
+    endGame();
+  }
 };
 
 // 오답 처리 함수
@@ -53,8 +57,8 @@ const handleIncorrectAnswer = (inputWord) => {
   userInput.value = "";
   addToList(incorrectList, inputWord);
 
-  const incorrectCount = incorrectList.querySelectorAll("li").length; 
-  incorrectSpan.textContent = `${incorrectCount}`; 
+  const incorrectCount = incorrectList.querySelectorAll("li").length;
+  incorrectSpan.textContent = `${incorrectCount}`;
 };
 
 // 단어 비교

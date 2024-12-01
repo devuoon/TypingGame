@@ -9,7 +9,7 @@ export const updateTimer = () => {
   GLOBAL_STATE.remainTime -= 1000;
 
   // 남은 시간을 초 단위로 계산
-  const seconds = (GLOBAL_STATE.remainTime / 1000).toFixed(0);
+  const seconds = Math.max(0, (GLOBAL_STATE.remainTime / 1000).toFixed(0));
   timerDisplay.textContent = `${seconds} 초`;
 
   // 스타일 업데이트
@@ -29,7 +29,7 @@ export const startCountdown = () => {
   if (GLOBAL_STATE.isCounting) return;
 
   GLOBAL_STATE.isCounting = true;
-  GLOBAL_STATE.remainTime = 20000; // 제한 시간 초기화
+  updateTimer(); // 즉시 업데이트
   GLOBAL_STATE.timerId = setInterval(updateTimer, 1000); // 1초 간격으로 updateTimer 실행
 };
 
