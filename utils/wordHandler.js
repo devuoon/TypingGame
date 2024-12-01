@@ -1,5 +1,5 @@
 import { wordAPI } from "./api.js";
-import { DOM_ELEMENTS } from "./global.js";
+import { DOM_ELEMENTS, GLOBAL_STATE } from "./global.js";
 import { resetTimer, startCountdown } from "./timerHandler.js";
 import { endGame } from "./gameManage.js";
 
@@ -13,8 +13,6 @@ const {
   wordCount,
 } = DOM_ELEMENTS;
 
-let words = [];
-
 correctSpan.textContent = "0";
 incorrectSpan.textContent = "0";
 
@@ -26,11 +24,10 @@ const addToList = (list, word) => {
 };
 
 // 랜덤 단어 표시
-const displayRandomWord = (words) => {
-  const randomIndex = Math.floor(Math.random() * words.length);
-  wordDisplay.textContent = words[randomIndex];
-
-  wordCount.textContent = words.length;
+const displayRandomWord = () => {
+  const randomIndex = Math.floor(Math.random() * GLOBAL_STATE.words.length);
+  wordDisplay.textContent = GLOBAL_STATE.words[randomIndex];
+  wordCount.textContent = GLOBAL_STATE.words.length;
 };
 
 // 정답 처리 함수
@@ -44,10 +41,10 @@ const handleCorrectAnswer = (inputWord) => {
   const correctCount = correctList.querySelectorAll("li").length;
   correctSpan.textContent = `${correctCount}`;
 
-  words = words.filter((word) => word !== inputWord); // 사용한 단어 제거
-  displayRandomWord(words);
+  GLOBAL_STATE.words = GLOBAL_STATE.words.filter((word) => word !== inputWord); // 사용한 단어 제거
+  displayRandomWord();
 
-  if (words.length === 0) {
+  if (GLOBAL_STATE.words.length === 0) {
     endGame();
   }
 };
@@ -76,8 +73,8 @@ export const wordCompare = () => {
 // 단어 API 호출
 export const fetchWords = async () => {
   try {
-    words = await wordAPI();
-    displayRandomWord(words);
+    GLOBAL_STATE.words = await wordAPI();
+    displayRandomWord();
   } catch (error) {
     console.log("error : ", error);
     wordDisplay.textContent = "API 호출 오류";

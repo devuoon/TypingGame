@@ -17,7 +17,10 @@ export const DOM_ELEMENTS = {
 
 // 전역 상태 변수
 export const GLOBAL_STATE = {
-  remainTime: 20000,
-  timerId: null,     // 타이머 ID 
+  remainTime: 200000, // 남은 시간
+  timerId: null, // 타이머 ID
   isCounting: false, // 타이머 작동 여부
+  words: [], // 단어 목록
+  correctAnswers: [], // 정답 목록
+  incorrectAnswers: [], // 오답 목록
 };

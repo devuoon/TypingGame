@@ -29,16 +29,17 @@ export const startCountdown = () => {
   if (GLOBAL_STATE.isCounting) return;
 
   GLOBAL_STATE.isCounting = true;
-  updateTimer(); // 즉시 업데이트
-  GLOBAL_STATE.timerId = setInterval(updateTimer, 1000); // 1초 간격으로 updateTimer 실행
+  updateTimer();
+  GLOBAL_STATE.timerId = setInterval(updateTimer, 1000);
 };
 
 // 타이머 리셋 함수
 export const resetTimer = () => {
   GLOBAL_STATE.isCounting = false;
-  GLOBAL_STATE.remainTime = 20000; // 제한 시간 초기화
-  clearInterval(GLOBAL_STATE.timerId); // 기존 타이머 정리
-  timerDisplay.style.border = ""; // 스타일 초기화
-  timerDisplay.style.color = ""; // 스타일 초기화
-  timerDisplay.textContent = ""; // 타이머 텍스트 초기화
+  GLOBAL_STATE.remainTime = 20000;
+  clearInterval(GLOBAL_STATE.timerId);
+  // 스타일 및 텍스트 초기화
+  timerDisplay.style.border = "";
+  timerDisplay.style.color = "";
+  timerDisplay.textContent = "";
 };
