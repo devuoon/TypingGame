@@ -21,6 +21,4 @@ export const GLOBAL_STATE = {
   timerId: null, // 타이머 ID
   isCounting: false, // 타이머 작동 여부
   words: [], // 단어 목록
-  correctAnswers: [], // 정답 목록
-  incorrectAnswers: [], // 오답 목록
 };

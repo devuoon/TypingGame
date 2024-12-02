@@ -1,12 +1,12 @@
-// api 호출 함수
-export const wordAPI = async () => {
-  try {
-    const response = await fetch(
-      "https://random-word-api.herokuapp.com/word?number=50"
-    );
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error fetching API:", error);
-  }
+export const wordAPI = () => {
+  return fetch("https://random-word-api.herokuapp.com/word?number=50")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`error : ${response.status}`);
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      console.error("Error fetching API:", error);
+    });
 };
